@@ -2,15 +2,27 @@ RewriteEngine On
 RewriteBase /LAMPAPI/
 
 # Login and Register
+RewriteCond %{REQUEST_METHOD} ^POST$ [NC]
 RewriteRule ^login/?$ login.php [L,NC]
+
+RewriteCond %{REQUEST_METHOD} ^POST$ [NC]
 RewriteRule ^register/?$ register.php [L,NC]
 
-# Contact actions (POST for add, PUT for update, DELETE for delete, GET for search/list)
+# Contact actions with HTTP method restrictions
+# POST for add contact
+RewriteCond %{REQUEST_METHOD} ^POST$ [NC]
 RewriteRule ^contacts/?$ addContact.php [L,NC]
+
+# PUT for update contact
+RewriteCond %{REQUEST_METHOD} ^PUT$ [NC]
 RewriteRule ^contacts/([0-9]+)/?$ updateContact.php [L,NC]
+
+# DELETE for delete contact
+RewriteCond %{REQUEST_METHOD} ^DELETE$ [NC]
 RewriteRule ^contacts/([0-9]+)/delete/?$ deleteContact.php [L,NC]
 
-# Search (e.g. GET /contacts?search=foo)
+# GET for search (separate endpoint to avoid conflicts)
+RewriteCond %{REQUEST_METHOD} ^GET$ [NC]
 RewriteRule ^contacts/search/?$ searchContacts.php [L,NC]
 
 # Deny direct access to all PHP files except via rewrites
