@@ -1,0 +1,23 @@
+services:
+  app:
+    build: ./docker/php
+    ports:
+      - "8000:80"
+    volumes:
+      - ./webroot:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: temp1234
+      MYSQL_DATABASE: Poosd_Contact_Manager
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./docker/mysql/Poosd_Contact_Manager.sql:/docker-entrypoint-initdb.d/Poosd_Contact_Manager.sql
+
+volumes:
+  db_data:

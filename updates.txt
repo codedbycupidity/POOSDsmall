@@ -1,0 +1,67 @@
+// Add Contact
+const url = '/LAMPAPI/contacts'; // POST
+
+// Update Contact
+const url = `/LAMPAPI/contacts/${contactId}`; // PUT
+
+// Delete Contact
+const url = `/LAMPAPI/contacts/${contactId}/delete`; // DELETE
+
+// Search Contacts
+const url = '/LAMPAPI/contacts/search'; // GET or POST
+
+// Login
+const url = '/LAMPAPI/login'; // POST
+
+| Action          | HTTP Verb | Endpoint                       | Script (via rewrite) |
+| --------------- | --------- | ------------------------------ | -------------------- |
+| Login           | POST      | `/LAMPAPI/login`               | `login.php`          |
+| Register        | POST      | `/LAMPAPI/register`            | `register.php`       |
+| Add Contact     | POST      | `/LAMPAPI/contacts`            | `addContact.php`     |
+| Update Contact  | PUT       | `/LAMPAPI/contacts/:id`        | `updateContact.php`  |
+| Delete Contact  | DELETE    | `/LAMPAPI/contacts/:id/delete` | `deleteContact.php`  |
+| Search Contacts | GET/POST  | `/LAMPAPI/contacts/search`     | `searchContacts.php` |
+
+RewriteEngine On
+RewriteBase /LAMPAPI/
+
+# Login and Register
+RewriteRule ^login/?$ login.php [L,NC]
+RewriteRule ^register/?$ register.php [L,NC]
+
+# Contact actions (POST for add, PUT for update, DELETE for delete, GET for search/list)
+RewriteRule ^contacts/?$ addContact.php [L,NC]
+RewriteRule ^contacts/([0-9]+)/?$ updateContact.php [L,NC]
+RewriteRule ^contacts/([0-9]+)/delete/?$ deleteContact.php [L,NC]
+
+# Search (e.g. GET /contacts?search=foo)
+RewriteRule ^contacts/search/?$ searchContacts.php [L,NC]
+
+# Deny direct access to all PHP files except via rewrites
+<FilesMatch "\.php$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Allow PHP scripts to be called by rewrite rules only
+<Files "login.php">
+    Allow from all
+</Files>
+<Files "register.php">
+    Allow from all
+</Files>
+<Files "addContact.php">
+    Allow from all
+</Files>
+<Files "updateContact.php">
+    Allow from all
+</Files>
+<Files "deleteContact.php">
+    Allow from all
+</Files>
+<Files "searchContacts.php">
+    Allow from all
+</Files>
+
+npm install -g browser-sync  
+browser-sync start --proxy "localhost:8000" --files "webroot/**/*.{js,css,php,html}"

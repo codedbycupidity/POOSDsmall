@@ -1,0 +1,16 @@
+# Ignore node_modules folder
+node_modules/
+
+.DS_Store
+README.md
+.env
+APITEST.txt
+lampapi-tests1.http
+lampapi-tests2.http
+lampapi-tests3.http
+lampapi-tests4.http
+lampapi-tests5.http
+lampapi-tests6.http
+deploy.sh
+debug.txt
+tests

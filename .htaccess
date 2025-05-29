@@ -1,0 +1,40 @@
+RewriteEngine On
+RewriteBase /LAMPAPI/
+
+# Login and Register
+RewriteRule ^login/?$ login.php [L,NC]
+RewriteRule ^register/?$ register.php [L,NC]
+
+# Contact actions (POST for add, PUT for update, DELETE for delete, GET for search/list)
+RewriteRule ^contacts/?$ addContact.php [L,NC]
+RewriteRule ^contacts/([0-9]+)/?$ updateContact.php [L,NC]
+RewriteRule ^contacts/([0-9]+)/delete/?$ deleteContact.php [L,NC]
+
+# Search (e.g. GET /contacts?search=foo)
+RewriteRule ^contacts/search/?$ searchContacts.php [L,NC]
+
+# Deny direct access to all PHP files except via rewrites
+<FilesMatch "\.php$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Allow PHP scripts to be called by rewrite rules only
+<Files "login.php">
+    Allow from all
+</Files>
+<Files "register.php">
+    Allow from all
+</Files>
+<Files "addContact.php">
+    Allow from all
+</Files>
+<Files "updateContact.php">
+    Allow from all
+</Files>
+<Files "deleteContact.php">
+    Allow from all
+</Files>
+<Files "searchContacts.php">
+    Allow from all
+</Files>
