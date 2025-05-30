@@ -98,6 +98,7 @@ export function addContact() {
 }
 
 // --- Search Contacts ---
+// --- Search Contacts ---
 export function searchContacts() {
   const searchInputElement = document.getElementById("searchText");
   if (!searchInputElement) return;
@@ -113,8 +114,20 @@ export function searchContacts() {
   const estimatedRows = searchInput ? Math.min(lastContactCount, 8) : lastContactCount;
   if (typeof showSkeleton === 'function') showSkeleton(estimatedRows);
 
+  // Track when skeleton was shown
+  const skeletonStartTime = Date.now();
+
   if (TEST_MODE) {
-    setTimeout(() => handleTestModeSearch(searchInput), 1000);
+    setTimeout(() => {
+      // Ensure skeleton shows for at least 500ms in test mode too
+      const elapsedTime = Date.now() - skeletonStartTime;
+      const minDisplayTime = 500;
+      const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
+      
+      setTimeout(() => {
+        handleTestModeSearch(searchInput);
+      }, remainingTime);
+    }, 1000);
     return;
   }
 
@@ -125,18 +138,27 @@ export function searchContacts() {
 
   xhr.onreadystatechange = function () {
     if (xhr.readyState !== 4 || xhr.status !== 200) return;
-    if (typeof hideSkeleton === 'function') hideSkeleton();
+    
+    // Calculate how long skeleton has been showing
+    const elapsedTime = Date.now() - skeletonStartTime;
+    const minDisplayTime = 500; // 500ms minimum
+    const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
 
-    let response;
-    try { response = JSON.parse(xhr.responseText); }
-    catch { document.getElementById("searchResult").textContent = "Invalid JSON from server."; return; }
+    // Hide skeleton after ensuring minimum display time
+    setTimeout(() => {
+      if (typeof hideSkeleton === 'function') hideSkeleton();
 
-    if (response.error) {
-      document.getElementById("searchResult").textContent = response.error;
-      return;
-    }
+      let response;
+      try { response = JSON.parse(xhr.responseText); }
+      catch { document.getElementById("searchResult").textContent = "Invalid JSON from server."; return; }
 
-    populateContactsTable(response.results, searchInput);
+      if (response.error) {
+        document.getElementById("searchResult").textContent = response.error;
+        return;
+      }
+
+      populateContactsTable(response.results, searchInput);
+    }, remainingTime);
   };
 
   xhr.send(payload);

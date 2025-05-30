@@ -20,7 +20,6 @@ $conn = new mysqli($hostname, $username, $dbPassword, $dbname);
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
-
     // UPDATED SQL to include Address
     $stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Email, Phone, UserID, Address) VALUES (?, ?, ?, ?, ?, ?)");
     // UPDATED: Added $address as "s" type at end
