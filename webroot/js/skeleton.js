@@ -3,9 +3,6 @@ function createSkeletonRow() {
         <tr class="skeleton-row">
             <td><div class="skeleton skeleton-text ${getRandomWidth()}"></div></td>
             <td><div class="skeleton skeleton-text ${getRandomWidth()}"></div></td>
-            <td><div class="skeleton skeleton-text email"></div></td>
-            <td><div class="skeleton skeleton-text phone"></div></td>
-            <td><div class="skeleton skeleton-button"></div></td>
         </tr>
     `;
 }
@@ -55,5 +52,4 @@ function hideSkeleton() {
         contactsList.innerHTML = '';
     }
     
-    // Note: Don't clear searchResult here - let the main function handle the final message
 }

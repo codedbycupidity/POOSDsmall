@@ -25,14 +25,14 @@
 }
 
 .skeleton-row td {
-    padding: 0.75rem 1rem; 
+    padding: 12px; /* Match the contactsTable padding */
     vertical-align: middle;
-    border-bottom: 1px solid #444; /* Match table border */
-    background-color: var(--bgDark); /* Match table background */
+    border-bottom: 1px solid var(--baseColor); /* Match table border */
+    background-color: #fff; /* Match table background */
 }
 
 .skeleton-row:hover td {
-    background-color: var(--bgMedium); /* Match table hover effect */
+    background-color: #f5f5f5; /* Match table hover effect */
 }
 
 /* Skeleton text elements */
@@ -42,60 +42,26 @@
     display: block;
 }
 
-/* Make skeleton columns match your table's exact column structure */
+/* Make skeleton columns match your 2-column table structure */
 .skeleton-row td:nth-child(1) { /* First Name */
-    width: 15%;
-    min-width: 120px;
+    width: 50%;
+    text-align: left;
 }
 
 .skeleton-row td:nth-child(2) { /* Last Name */
-    width: 15%;
-    min-width: 120px;
-}
-
-.skeleton-row td:nth-child(3) { /* Email */
-    width: 40%;
-    min-width: 200px;
-}
-
-.skeleton-row td:nth-child(4) { /* Phone */
-    width: 18%;
-    min-width: 130px;
-}
-
-.skeleton-row td:nth-child(5) { /* Actions */
-    width: 12%;
-    min-width: 100px;
-    text-align: center;
+    width: 50%;
+    text-align: left;
 }
 
 /* Skeleton element sizes to look realistic and fit the columns */
 .skeleton-row td:nth-child(1) .skeleton-text { /* First Name */
-    width: 80%;
-    max-width: 90px;
+    width: 70%;
+    max-width: 120px;
 }
 
 .skeleton-row td:nth-child(2) .skeleton-text { /* Last Name */
-    width: 85%;
-    max-width: 95px;
-}
-
-.skeleton-row td:nth-child(3) .skeleton-text { /* Email */
-    width: 90%;
-    max-width: 180px;
-}
-
-.skeleton-row td:nth-child(4) .skeleton-text { /* Phone */
     width: 75%;
-    max-width: 100px;
-}
-
-.skeleton-button {
-    height: 32px; /* Match dropdown button height */
-    width: 80px;  /* Match dropdown button width */
-    border-radius: 4px;
-    margin: 0 auto;
-    display: block;
+    max-width: 130px;
 }
 
 /* Random width variations for more realistic look */
@@ -108,47 +74,28 @@
 }
 
 .skeleton-text.long { 
-    width: 90% !important; 
+    width: 85% !important; 
 }
 
-.skeleton-text.email { 
-    width: 85% !important;
-    max-width: 180px !important;
-}
-
-.skeleton-text.phone { 
-    width: 70% !important;
-    max-width: 100px !important;
-}
-
+/* Responsive design to match the main table */
 @media (max-width: 768px) {
     .skeleton-row td {
-        padding: 0.5rem; 
-        font-size: 0.8rem;
+        padding: 8px; /* Match responsive padding */
+        font-size: 0.9rem;
     }
     
     .skeleton-text {
         height: 14px;
     }
-    
-    .skeleton-button {
-        height: 28px;
-        width: 60px;
-    }
 }
 
 @media (max-width: 480px) {
     .skeleton-row td {
-        padding: 0.4rem; 
-        font-size: 0.75rem;
+        padding: 6px; 
+        font-size: 0.8rem;
     }
     
     .skeleton-text {
         height: 12px;
-    }
-    
-    .skeleton-button {
-        height: 24px;
-        width: 50px;
     }
 }
