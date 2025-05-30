@@ -241,11 +241,87 @@ export function deleteContact(id) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       showToast(`Deleted: ${firstName} ${lastName}`);
+      clearContactDetails(); // Clear details when contact is deleted
       searchContacts();
     }
   };
 
   xhr.send(jsonPayload);
+}
+
+// ======== CONTACT DETAILS POPULATION ========
+
+/**
+ * Populates the contact details panel with selected contact information
+ * @param {Object} contact - Contact object with ID, firstName, lastName, email, phoneNumber, address
+ */
+function populateContactDetails(contact) {
+  const detailsTable = document.getElementById('contactDetails');
+  const detailsBody = detailsTable.querySelector('tbody');
+  const noSelection = document.querySelector('.no-contact-selected');
+  
+  // Hide the "no contact selected" message
+  if (noSelection) {
+    noSelection.style.display = 'none';
+  }
+  
+  // Show the details table
+  detailsTable.style.display = 'table';
+  
+  // Clear existing details
+  detailsBody.innerHTML = '';
+  
+  // Populate with contact details using escapeHtml pattern
+  detailsBody.innerHTML = `
+    <tr>
+      <td><strong>First Name:</strong></td>
+      <td>${escapeHtml(contact.firstName)}</td>
+    </tr>
+    <tr>
+      <td><strong>Last Name:</strong></td>
+      <td>${escapeHtml(contact.lastName)}</td>
+    </tr>
+    <tr>
+      <td><strong>Email:</strong></td>
+      <td><a href="mailto:${escapeHtml(contact.email)}">${escapeHtml(contact.email)}</a></td>
+    </tr>
+    <tr>
+      <td><strong>Phone:</strong></td>
+      <td><a href="tel:${escapeHtml(contact.phoneNumber)}">${escapeHtml(contact.phoneNumber)}</a></td>
+    </tr>
+    <tr>
+      <td><strong>Address:</strong></td>
+      <td>${escapeHtml(contact.address || 'Not provided')}</td>
+    </tr>
+    <tr>
+      <td colspan="2" style="padding-top: 20px; text-align: center;">
+        <button onclick="showEditContact(${contact.ID}, '${escapeHtml(contact.firstName)}', '${escapeHtml(contact.lastName)}', '${escapeHtml(contact.email)}', '${escapeHtml(contact.phoneNumber)}', '${escapeHtml(contact.address || "")}'); return false;" 
+                style="margin-right: 10px; padding: 8px 16px; background-color: var(--loginSubmitBackgroundColor); color: white; border: none; border-radius: 4px; cursor: pointer;">
+          Edit Contact
+        </button>
+        <button onclick="deleteContact(${contact.ID}); return false;" 
+                style="padding: 8px 16px; background-color:rgba(220, 53, 70, 0.65); color: white; border: none; border-radius: 4px; cursor: pointer;">
+          Delete Contact
+        </button>
+      </td>
+    </tr>
+  `;
+}
+
+/**
+ * Clears the contact details panel and shows the "no contact selected" message
+ */
+function clearContactDetails() {
+  const detailsTable = document.getElementById('contactDetails');
+  const noSelection = document.querySelector('.no-contact-selected');
+  
+  // Hide the details table
+  detailsTable.style.display = 'none';
+  
+  // Show the "no contact selected" message
+  if (noSelection) {
+    noSelection.style.display = 'flex';
+  }
 }
 
 // ======== UTILITIES ========
@@ -324,6 +400,9 @@ function populateContactsTable(contacts, searchInput = "") {
   // Clear any existing contacts from the table
   listContainer.innerHTML = "";
   
+  // Clear contact details when refreshing the list
+  clearContactDetails();
+  
   // Update the contact count for skeleton loading (minimum of 3 for consistent UI)
   lastContactCount = Math.max(contacts.length, 3);
 
@@ -375,24 +454,15 @@ function populateContactsTable(contacts, searchInput = "") {
 
       // Add selection to the clicked row (persistent highlight)
       this.classList.add('selected');
+      
+      // Populate the contact details panel
+      populateContactDetails(contact);
     });
 
     // Build the HTML content for the table row with contact data
     row.innerHTML = `
       <td>${escapeHtml(contact.firstName)}</td>
       <td>${escapeHtml(contact.lastName)}</td>
-      <td>${escapeHtml(contact.email)}</td>
-      <td>${escapeHtml(contact.phoneNumber)}</td>
-      <td>${escapeHtml(contact.address || "")}</td>
-      <td class="actions-cell">
-        <div class="dropdown">
-          <button class="dropbtn">Actions ▼</button>
-          <div class="dropdown-content">
-            <a href="#" onclick="showEditContact(${contact.ID}, '${escapeHtml(contact.firstName)}', '${escapeHtml(contact.lastName)}', '${escapeHtml(contact.email)}', '${escapeHtml(contact.phoneNumber)}', '${escapeHtml(contact.address || "")}'); return false;">Edit</a>
-            <a href="#" onclick="deleteContact(${contact.ID}); return false;">Delete</a>
-          </div>
-        </div>
-      </td>
     `;
     
     // Add the completed row to the table body
@@ -471,6 +541,8 @@ document.addEventListener("DOMContentLoaded", function () {
   window.cancelEdit = cancelEdit;
   window.showEditContact = showEditContact;
   window.deleteContact = deleteContact;
+  window.populateContactDetails = populateContactDetails;
+  window.clearContactDetails = clearContactDetails;
 
   // Dropdown menu handling
   document.addEventListener("click", function (e) {
@@ -514,4 +586,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-

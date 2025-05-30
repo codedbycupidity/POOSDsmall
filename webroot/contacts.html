@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/fonts.css" />
     <link rel="stylesheet" href="../css/skeleton.css">
     <link rel="stylesheet" href="../css/contacts.css">
+    <link rel="stylesheet" href="../css/search.css">
     <link rel="stylesheet" href="../css/styles.css">
     <script src="../js/skeleton.js" defer></script>
     <script type="module" src="js/main.js"></script>
@@ -30,34 +31,61 @@
                 <button class="tab-button" onclick="switchTab('add')">Add Contact</button>
             </div>
         </div>
-
         <!-- Contact List Tab -->
         <div id="contactsTab" class="tab-content active">
-            <!-- Search Bar -->
-            <div id="searchDiv">
-                <input type="text" id="searchText" placeholder="Search contacts...">
-                <button id="searchButton" onclick="searchContacts()">Search</button>
-                <span id="searchResult"></span>
+            <!-- Side-by-side container -->
+            <div class="contacts-container">
+                <!-- Left Panel - Contact List -->
+                <div class="contacts-left-panel">
+                    <!-- Search Bar -->
+                    <div id="searchDiv">
+                        <div class="search-input-container">
+                            <input type="text" id="searchText" placeholder="Search contacts...">
+                            <button id="searchButton" onclick="searchContacts()">Search</button>
+                        </div>
+                        <span id="searchResult"></span>
+                    </div>
+
+                    <!-- Contacts List -->
+                    <div id="contactsDiv">
+                        <table id="contactsTable">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contactsList">
+                                <!-- Contacts will be loaded here by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Right Panel - Contact Details -->
+                <div class="contacts-right-panel">
+                    <div class="details-header">
+                        Contact Details
+                    </div>
+                    <!-- Contacts Details card -->
+                    <div id="contactDetailsDiv">
+                        <div class="no-contact-selected">
+                            Select a contact from the list to view details
+                        </div>
+                        <table id="contactDetails" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th>Contact Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contactDetails">
+                                <!-- Contact details will be loaded here by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
-            <!-- Contacts List -->
-            <div id="contactsDiv">
-                <table id="contactsTable">
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="contactsList">
-                        <!-- Contacts will be loaded here by JavaScript -->
-                    </tbody>
-                </table>
-            </div>
 
             <!-- Edit Contact Section (Initially Hidden) -->
             <div id="editContactDiv" style="display: none;">

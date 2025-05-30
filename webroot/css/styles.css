@@ -160,35 +160,6 @@ body {
   margin: 0;
   color: var(--textLight);
 }
-
-/* SEARCH BAR */
-#searchDiv {
-  margin-bottom: 1.5rem;
-  display: flex;
-  max-width: 600px;
-  gap: 10px;
-}
-#searchText {
-  flex-grow: 1;
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: none;
-  background-color: var(--bgMedium);
-  color: var(--textLight);
-}
-#searchButton {
-  padding: 0.5rem 1rem;
-  background-color: var(--loginSubmitBackgroundColor);
-  color: var(--loginSubmitColor);
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-}
-#searchButton:hover {
-  background-color: var(--loginSubmitHoverBackgroundColor);
-}
-
 /* MAIN LAYOUT */
 .main-layout {
   display: flex;
