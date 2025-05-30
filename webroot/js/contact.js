@@ -312,20 +312,33 @@ function escapeHtml(str) {
 }
 
 // ======== CONTACTS TABLE POPULATION ========
-
+/**
+ * Populates the contacts table with contact data and makes rows clickable
+ * @param {Array} contacts - Array of contact objects from the database
+ * @param {string} searchInput - Optional search term used to filter contacts
+ */
 function populateContactsTable(contacts, searchInput = "") {
+  // Get the table body element where contacts will be displayed
   const listContainer = document.getElementById("contactsList");
+  
+  // Clear any existing contacts from the table
   listContainer.innerHTML = "";
+  
+  // Update the contact count for skeleton loading (minimum of 3 for consistent UI)
   lastContactCount = Math.max(contacts.length, 3);
 
+  // Update the search result message based on whether search was performed
   if (searchInput) {
+    // Show search results with proper pluralization
     document.getElementById("searchResult").textContent =
       `Found ${contacts.length} contact${contacts.length !== 1 ? 's' : ''} matching "${searchInput}"`;
   } else {
+    // Show total contacts when no search is active
     document.getElementById("searchResult").textContent =
       `Showing ${contacts.length} contact${contacts.length !== 1 ? 's' : ''}`;
   }
 
+  // Handle empty results - show appropriate message
   if (contacts.length === 0) {
     const emptyRow = document.createElement("tr");
     emptyRow.innerHTML = `
@@ -334,18 +347,44 @@ function populateContactsTable(contacts, searchInput = "") {
       </td>
     `;
     listContainer.appendChild(emptyRow);
-    return;
+    return; // Exit early since there are no contacts to display
   }
 
+  // Loop through each contact and create a clickable table row
   contacts.forEach(contact => {
+    // Create a new table row element
     const row = document.createElement("tr");
+
+    // Add CSS class for styling (enables hover effects and cursor pointer)
+    row.classList.add("contact-row");
+
+    // Add click event listener to make the entire row clickable
+    row.addEventListener('click', function (e) {
+      // Prevent row click when user clicks on action buttons or dropdown
+      if (e.target.closest('.dropdown') || e.target.closest('button') || e.target.closest('a')) {
+        return; // Exit early - don't trigger row selection
+      }
+      
+      // Log the selected contact to console
+      console.log(`${contact.firstName} ${contact.lastName} is selected`);
+
+      // Remove selection from all other rows
+      document.querySelectorAll('.contact-row.selected').forEach(selectedRow => {
+        selectedRow.classList.remove('selected');
+      });
+
+      // Add selection to the clicked row (persistent highlight)
+      this.classList.add('selected');
+    });
+
+    // Build the HTML content for the table row with contact data
     row.innerHTML = `
       <td>${escapeHtml(contact.firstName)}</td>
       <td>${escapeHtml(contact.lastName)}</td>
       <td>${escapeHtml(contact.email)}</td>
       <td>${escapeHtml(contact.phoneNumber)}</td>
       <td>${escapeHtml(contact.address || "")}</td>
-      <td>
+      <td class="actions-cell">
         <div class="dropdown">
           <button class="dropbtn">Actions ▼</button>
           <div class="dropdown-content">
@@ -355,9 +394,19 @@ function populateContactsTable(contacts, searchInput = "") {
         </div>
       </td>
     `;
+    
+    // Add the completed row to the table body
     listContainer.appendChild(row);
   });
 }
+
+// Add this function to handle contact selection
+function selectContact(firstName, lastName) {
+  console.log(`${firstName} ${lastName} is selected`);
+}
+
+// Don't forget to export this function and add it to window in the DOM event section
+window.selectContact = selectContact;
 
 // ======== TEST MODE ========
 
@@ -465,3 +514,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+

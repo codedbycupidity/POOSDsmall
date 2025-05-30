@@ -222,6 +222,21 @@ body {
   background-color: var(--bgMedium);
 }
 
+/* CLICKABLE ROW STYLES */
+.contact-row {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Persistent highlight for currently selected contact */
+.contact-row.selected {
+  background-color: rgba(234, 76, 136, 0.15) !important;
+}
+
+.contact-row.selected td {
+  background-color: rgba(234, 76, 136, 0.15) !important;
+}
+
 /* FORM STYLES */
 .form-section {
   background-color: var(--bgMedium);
