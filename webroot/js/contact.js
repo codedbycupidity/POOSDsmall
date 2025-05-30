@@ -281,29 +281,58 @@ function populateContactDetails(contact) {
       <td>${escapeHtml(contact.lastName)}</td>
     </tr>
     <tr>
-      <td><strong>Email:</strong></td>
-      <td><a href="mailto:${escapeHtml(contact.email)}">${escapeHtml(contact.email)}</a></td>
-    </tr>
-    <tr>
-      <td><strong>Phone:</strong></td>
-      <td><a href="tel:${escapeHtml(contact.phoneNumber)}">${escapeHtml(contact.phoneNumber)}</a></td>
-    </tr>
+    <td><strong>Email:</strong></td>
+    <td><a href="mailto:${escapeHtml(contact.email)}" 
+    style="color: var(--loginSubmitBackgroundColor); 
+    text-decoration: none; 
+    transition: color 0.2s ease;
+    " onmouseover="this.style.color='var(--loginSubmitHoverBackgroundColor)'; 
+    this.style.textDecoration='underline';
+    " onmouseout="this.style.color='var(--loginSubmitBackgroundColor)'; 
+    this.style.textDecoration='none';">${escapeHtml(contact.email)}</a></td>
+  </tr>
+  <tr>
+    <td><strong>Phone:</strong></td>
+    <td><a href="tel:${escapeHtml(contact.phoneNumber)}" 
+    style="color: var(--loginSubmitBackgroundColor); 
+    text-decoration: none; 
+    transition: color 0.2s ease;
+    " onmouseover="this.style.color='var(--loginSubmitHoverBackgroundColor)'; 
+    this.style.textDecoration='underline';
+    " onmouseout="this.style.color='var(--loginSubmitBackgroundColor)'; 
+    this.style.textDecoration='none';">${escapeHtml(contact.phoneNumber)}</a></td>
+  </tr>
     <tr>
       <td><strong>Address:</strong></td>
       <td>${escapeHtml(contact.address || 'Not provided')}</td>
     </tr>
     <tr>
-      <td colspan="2" style="padding-top: 20px; text-align: center;">
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-          <button onclick="showEditContact(${contact.ID}, '${escapeHtml(contact.firstName)}', '${escapeHtml(contact.lastName)}', '${escapeHtml(contact.email)}', '${escapeHtml(contact.phoneNumber)}', '${escapeHtml(contact.address || "")}'); return false;" 
-                  style="padding: 8px 16px; background-color: var(--loginSubmitBackgroundColor); color: white; border: none; border-radius: 4px; cursor: pointer; min-width: 120px;">
-            Edit Contact
-          </button>
-          <button onclick="deleteContact(${contact.ID}); return false;" 
-                  style="padding: 8px 16px; background-color:rgba(220, 53, 70, 0.65); color: white; border: none; border-radius: 4px; cursor: pointer; min-width: 120px;">
-            Delete Contact
-          </button>
-        </div>
+    <td colspan="2" style="padding-top: 20px; text-align: center;">
+      <div style="display: flex; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+      gap: 10px;">
+      </div>
+      <button onclick="showEditContact(${contact.ID}, '${escapeHtml(contact.firstName)}', '${escapeHtml(contact.lastName)}', '${escapeHtml(contact.email)}', '${escapeHtml(contact.phoneNumber)}', '${escapeHtml(contact.address || "")}'); return false;" 
+              style="padding: 8px 16px; 
+              background-color: var(--loginSubmitBackgroundColor); 
+              color: white; 
+              border: none; 
+              border-radius: 4px; 
+              cursor: pointer; 
+              min-width: 120px;">
+        Edit Contact
+      </button>
+      <button onclick="deleteContact(${contact.ID}); return false;" 
+              style="padding: 8px 16px; 
+              background-color:rgba(220, 53, 70, 0.65);
+              color: white; 
+              border: none; 
+              border-radius: 4px; 
+              cursor: pointer; 
+              min-width: 120px;">
+        Delete Contact
+      </button>
       </td>
     </tr>
   `;

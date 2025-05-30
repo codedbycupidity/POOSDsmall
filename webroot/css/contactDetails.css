@@ -1,10 +1,22 @@
 /* ======== SIDE-BY-SIDE CONTACT LAYOUT ======== */
 
+:root {
+  --baseColor: #606468;
+  --iconFill: var(--baseColor);
+  --loginSubmitBackgroundColor: #ea4c88;
+  --loginSubmitHoverBackgroundColor: #d44179;
+  --loginSubmitColor: #eee;
+  --bgDark: #2c3338;
+  --bgMedium: #3b4148;
+  --textLight: #eee;
+}
+
 /* Main container for the side-by-side layout */
 .contacts-container {
     display: flex;
     gap: 20px;
-    height: calc(100vh - 250px); /* Adjust based on your header and tab height */
+    height: calc(100vh - 250px);
+    /* Adjust based on your header and tab height */
     margin-top: 20px;
 }
 
@@ -34,8 +46,8 @@
 #searchDiv {
     padding: 15px;
     background-color: #f8f9fa;
-    border-bottom: 1px solid #ddd;
-    flex-shrink: 0; /* Prevent search bar from shrinking */
+    flex-shrink: 0;
+    /* Prevent search bar from shrinking */
 }
 
 #searchText {
@@ -65,7 +77,7 @@
 #contactsTable td {
     padding: 12px;
     text-align: left;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--baseColor);
 }
 
 #contactsTable thead {
@@ -77,7 +89,6 @@
 
 #contactsTable thead th {
     font-weight: 600;
-    border-bottom: 2px solid #dee2e6;
 }
 
 /* Contact row styling */
@@ -105,7 +116,6 @@
 .details-header {
     background-color: #f8f9fa;
     padding: 15px;
-    border-bottom: 1px solid #ddd;
     font-weight: bold;
     text-align: center;
     flex-shrink: 0;
@@ -113,6 +123,7 @@
 
 /* Contact details container */
 #contactDetailsDiv {
+    background-color: var(--bgDark);
     flex: 1;
     overflow-y: auto;
     padding: 20px;
@@ -129,14 +140,14 @@
 
 #contactDetails td {
     padding: 10px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--bgMedium);
     vertical-align: top;
 }
 
 #contactDetails td:first-child {
     width: 30%;
     font-weight: 500;
-    color: #555;
+    color: var(--textLight);
 }
 
 #contactDetails td:last-child {
@@ -152,7 +163,6 @@
     height: 100%;
     color: #666;
     text-align: center;
-    font-style: italic;
     flex-direction: column;
 }
 
@@ -164,11 +174,6 @@
 }
 
 /* Links in contact details */
-#contactDetails a {
-    color: #007bff;
-    text-decoration: none;
-}
-
 #contactDetails a:hover {
     text-decoration: underline;
 }
@@ -247,7 +252,7 @@
     position: absolute;
     background-color: white;
     min-width: 120px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
     border-radius: 4px;
     z-index: 1000;
@@ -276,28 +281,28 @@
         height: auto;
         gap: 15px;
     }
-    
+
     .contacts-left-panel,
     .contacts-right-panel {
         flex: none;
         min-height: 300px;
     }
-    
+
     .contacts-right-panel {
         min-height: 250px;
     }
-    
+
     #searchText {
         width: 50%;
         margin-bottom: 10px;
     }
-    
+
     #contactsTable th,
     #contactsTable td {
         padding: 8px;
         font-size: 0.9rem;
     }
-    
+
     /* Hide some columns on mobile */
     #contactsTable th:nth-child(4),
     #contactsTable td:nth-child(4),
@@ -313,31 +318,31 @@
         gap: 10px;
         margin-top: 10px;
     }
-    
+
     #searchDiv {
         padding: 10px;
     }
-    
+
     #searchText {
         width: 100%;
         margin-bottom: 8px;
         margin-right: 0;
     }
-    
+
     #searchButton {
         width: 100%;
         margin-top: 5px;
     }
-    
+
     #contactDetailsDiv {
         padding: 15px;
     }
-    
+
     .details-header {
         padding: 10px;
         font-size: 0.9rem;
     }
-    
+
     #editContactDiv {
         width: 95%;
         padding: 15px;
@@ -368,4 +373,3 @@
 #contactsDiv::-webkit-scrollbar-thumb:hover,
 #contactDetailsDiv::-webkit-scrollbar-thumb:hover {
     background: #a1a1a1;
-}

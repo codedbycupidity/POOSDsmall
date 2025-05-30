@@ -126,7 +126,8 @@ body {
 .contacts-container {
   display: flex;
   gap: 20px;
-  height: calc(100vh - 280px); /* Adjusted for your header and tab heights */
+  height: calc(100vh - 280px);
+  /* Adjusted for your header and tab heights */
   margin-top: 0;
 }
 
@@ -139,7 +140,7 @@ body {
   border-radius: 8px;
   overflow: hidden;
   background-color: var(--bgMedium);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Right panel - Contact details */
@@ -151,7 +152,8 @@ body {
   border-radius: 8px;
   overflow: hidden;
   background-color: var(--bgMedium);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+
 }
 
 /* Contacts table container - Updated for side-by-side */
@@ -168,7 +170,7 @@ body {
   border-collapse: separate;
   background-color: var(--bgDark);
   table-layout: fixed;
-  margin: 0; /* Remove margin */
+  margin: 0;
 }
 
 #contactsTable thead {
@@ -239,115 +241,12 @@ body {
   font-size: 0.9rem;
 }
 
-/* Contact details container */
-#contactDetailsDiv {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--bgDark);
-}
-
-/* Contact details table */
-#contactDetails {
-  width: 100%;
-  margin: 0;
-  border-collapse: collapse;
-  background-color: var(--bgDark);
-}
-
-#contactDetails thead {
-  display: none; /* Hide the original header since we have the details-header */
-}
-
-#contactDetails td {
-  padding: 12px 8px;
-  border-bottom: 1px solid #444;
-  vertical-align: top;
-  color: #ccc;
-}
-
-#contactDetails td:first-child {
-  width: 35%;
-  font-weight: 500;
-  color: var(--textLight);
-  text-transform: uppercase;
-  font-size: 0.8rem;
-}
-
-#contactDetails td:last-child {
-  width: 65%;
-  word-break: break-word;
-}
-
-/* No contact selected message */
-.no-contact-selected {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  color: var(--baseColor);
-  text-align: center;
-  font-style: italic;
-  flex-direction: column;
-}
-
-.no-contact-selected::before {
-  content: "👤";
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  opacity: 0.3;
-}
-
-/* Links in contact details */
-#contactDetails a {
-  color: var(--loginSubmitBackgroundColor);
-  text-decoration: none;
-}
-
-#contactDetails a:hover {
-  text-decoration: underline;
-  color: var(--loginSubmitHoverBackgroundColor);
-}
-
-/* Action buttons in details panel */
-#contactDetails button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  font-weight: 500;
-  margin-right: 10px;
-}
-
-#contactDetails button:first-of-type {
-  background-color: var(--loginSubmitBackgroundColor);
-  color: var(--loginSubmitColor);
-}
-
-#contactDetails button:first-of-type:hover {
-  background-color: var(--loginSubmitHoverBackgroundColor);
-}
-
-#contactDetails button:last-of-type {
-  background-color: #e74c3c;
-  color: white;
-}
-
-#contactDetails button:last-of-type:hover {
-  background-color: #c0392b;
-}
-
 /* FORM STYLES */
 .form-section {
   background-color: var(--bgMedium);
   padding: 1.5rem;
   border-radius: 0.5rem;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   max-width: 500px;
 }
 
@@ -364,6 +263,7 @@ body {
 }
 
 .form-group input {
+  outline: 2px solid var(--baseColor);
   width: 100%;
   padding: 0.6rem;
   border: none;
@@ -542,7 +442,7 @@ body {
   left: 0;
   background-color: #434a52;
   min-width: 140px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   z-index: 1001;
   border-radius: 4px;
   opacity: 0;
@@ -605,58 +505,58 @@ body {
   .container {
     padding: 1rem;
   }
-  
+
   #headerDiv {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
   }
-  
+
   .tab-buttons {
     flex-direction: column;
   }
-  
+
   .tab-button {
     padding: 0.75rem;
   }
-  
+
   /* Stack side-by-side layout vertically on mobile */
   .contacts-container {
     flex-direction: column;
     height: auto;
     gap: 15px;
   }
-  
+
   .contacts-left-panel,
   .contacts-right-panel {
     flex: none;
     min-height: 300px;
   }
-  
+
   .contacts-right-panel {
     min-height: 250px;
   }
-  
+
   #searchDiv {
     flex-direction: column;
     gap: 8px;
   }
-  
+
   #searchText,
   #searchButton {
     width: 100%;
   }
-  
+
   #contactsTable th,
   #contactsTable td {
     padding: 0.5rem;
     font-size: 0.8rem;
   }
-  
+
   .form-section {
     padding: 1rem;
   }
-  
+
   /* Hide some table columns on mobile */
   #contactsTable th:nth-child(4),
   #contactsTable td:nth-child(4),
@@ -670,40 +570,40 @@ body {
   .container {
     padding: 0.5rem;
   }
-  
+
   #headerDiv h1 {
     font-size: 1.2rem;
   }
-  
+
   .tab-content {
     min-height: 400px;
   }
-  
+
   .contacts-container {
     gap: 10px;
     margin-top: 10px;
   }
-  
+
   #contactsTable th,
   #contactsTable td {
     padding: 0.4rem;
     font-size: 0.75rem;
   }
-  
+
   .dropbtn {
     padding: 4px 6px;
     font-size: 0.7rem;
   }
-  
+
   #contactDetailsDiv {
     padding: 15px;
   }
-  
+
   .details-header {
     padding: 10px;
     font-size: 0.8rem;
   }
-  
+
   #editContactDiv {
     width: 95%;
     padding: 15px;
@@ -712,7 +612,7 @@ body {
 }
 
 /* Fix for table cell overflow */
-#contactsTable td, 
+#contactsTable td,
 #contactsTable th {
   overflow: visible !important;
 }
@@ -763,4 +663,30 @@ body {
 #contactsDiv::-webkit-scrollbar-thumb:hover,
 #contactDetailsDiv::-webkit-scrollbar-thumb:hover {
   background: var(--loginSubmitBackgroundColor);
+}
+
+/* Add New Contact Heading Styles */
+.add-contact-heading,
+h2.add-contact-heading {
+  margin: 0 0 1.5rem 0;
+  color: var(--baseColor);
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--loginSubmitBackgroundColor);
+  position: relative;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+
+  .add-contact-heading,
+  .add-contact-heading-simple,
+  h2.add-contact-heading {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
 }
