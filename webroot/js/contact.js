@@ -123,7 +123,7 @@ export function searchContacts() {
       const elapsedTime = Date.now() - skeletonStartTime;
       const minDisplayTime = 500;
       const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
-      
+
       setTimeout(() => {
         handleTestModeSearch(searchInput);
       }, remainingTime);
@@ -138,7 +138,7 @@ export function searchContacts() {
 
   xhr.onreadystatechange = function () {
     if (xhr.readyState !== 4 || xhr.status !== 200) return;
-    
+
     // Calculate how long skeleton has been showing
     const elapsedTime = Date.now() - skeletonStartTime;
     const minDisplayTime = 500; // 500ms minimum
@@ -250,7 +250,6 @@ export function deleteContact(id) {
 }
 
 // ======== CONTACT DETAILS POPULATION ========
-
 /**
  * Populates the contact details panel with selected contact information
  * @param {Object} contact - Contact object with ID, firstName, lastName, email, phoneNumber, address
@@ -259,18 +258,18 @@ function populateContactDetails(contact) {
   const detailsTable = document.getElementById('contactDetails');
   const detailsBody = detailsTable.querySelector('tbody');
   const noSelection = document.querySelector('.no-contact-selected');
-  
+
   // Hide the "no contact selected" message
   if (noSelection) {
     noSelection.style.display = 'none';
   }
-  
+
   // Show the details table
   detailsTable.style.display = 'table';
-  
+
   // Clear existing details
   detailsBody.innerHTML = '';
-  
+
   // Populate with contact details using escapeHtml pattern
   detailsBody.innerHTML = `
     <tr>
@@ -295,29 +294,30 @@ function populateContactDetails(contact) {
     </tr>
     <tr>
       <td colspan="2" style="padding-top: 20px; text-align: center;">
-        <button onclick="showEditContact(${contact.ID}, '${escapeHtml(contact.firstName)}', '${escapeHtml(contact.lastName)}', '${escapeHtml(contact.email)}', '${escapeHtml(contact.phoneNumber)}', '${escapeHtml(contact.address || "")}'); return false;" 
-                style="margin-right: 10px; padding: 8px 16px; background-color: var(--loginSubmitBackgroundColor); color: white; border: none; border-radius: 4px; cursor: pointer;">
-          Edit Contact
-        </button>
-        <button onclick="deleteContact(${contact.ID}); return false;" 
-                style="padding: 8px 16px; background-color:rgba(220, 53, 70, 0.65); color: white; border: none; border-radius: 4px; cursor: pointer;">
-          Delete Contact
-        </button>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+          <button onclick="showEditContact(${contact.ID}, '${escapeHtml(contact.firstName)}', '${escapeHtml(contact.lastName)}', '${escapeHtml(contact.email)}', '${escapeHtml(contact.phoneNumber)}', '${escapeHtml(contact.address || "")}'); return false;" 
+                  style="padding: 8px 16px; background-color: var(--loginSubmitBackgroundColor); color: white; border: none; border-radius: 4px; cursor: pointer; min-width: 120px;">
+            Edit Contact
+          </button>
+          <button onclick="deleteContact(${contact.ID}); return false;" 
+                  style="padding: 8px 16px; background-color:rgba(220, 53, 70, 0.65); color: white; border: none; border-radius: 4px; cursor: pointer; min-width: 120px;">
+            Delete Contact
+          </button>
+        </div>
       </td>
     </tr>
   `;
 }
-
 /**
  * Clears the contact details panel and shows the "no contact selected" message
  */
 function clearContactDetails() {
   const detailsTable = document.getElementById('contactDetails');
   const noSelection = document.querySelector('.no-contact-selected');
-  
+
   // Hide the details table
   detailsTable.style.display = 'none';
-  
+
   // Show the "no contact selected" message
   if (noSelection) {
     noSelection.style.display = 'flex';
@@ -396,13 +396,13 @@ function escapeHtml(str) {
 function populateContactsTable(contacts, searchInput = "") {
   // Get the table body element where contacts will be displayed
   const listContainer = document.getElementById("contactsList");
-  
+
   // Clear any existing contacts from the table
   listContainer.innerHTML = "";
-  
+
   // Clear contact details when refreshing the list
   clearContactDetails();
-  
+
   // Update the contact count for skeleton loading (minimum of 3 for consistent UI)
   lastContactCount = Math.max(contacts.length, 3);
 
@@ -443,7 +443,7 @@ function populateContactsTable(contacts, searchInput = "") {
       if (e.target.closest('.dropdown') || e.target.closest('button') || e.target.closest('a')) {
         return; // Exit early - don't trigger row selection
       }
-      
+
       // Log the selected contact to console
       console.log(`${contact.firstName} ${contact.lastName} is selected`);
 
@@ -454,7 +454,7 @@ function populateContactsTable(contacts, searchInput = "") {
 
       // Add selection to the clicked row (persistent highlight)
       this.classList.add('selected');
-      
+
       // Populate the contact details panel
       populateContactDetails(contact);
     });
@@ -464,7 +464,7 @@ function populateContactsTable(contacts, searchInput = "") {
       <td>${escapeHtml(contact.firstName)}</td>
       <td>${escapeHtml(contact.lastName)}</td>
     `;
-    
+
     // Add the completed row to the table body
     listContainer.appendChild(row);
   });
@@ -521,7 +521,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Add input clear listeners to all fields
   const fields = ['contactFirstName', 'contactLastName', 'contactEmail', 'contactPhone', 'contactAddress',
-                  'editFirstName', 'editLastName', 'editEmail', 'editPhone', 'editAddress'];
+    'editFirstName', 'editLastName', 'editEmail', 'editPhone', 'editAddress'];
   fields.forEach(fieldId => {
     const field = document.getElementById(fieldId);
     if (field) {
