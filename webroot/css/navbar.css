@@ -1,3 +1,14 @@
+:root {
+  --baseColor: #606468;
+  --iconFill: var(--baseColor);
+  --loginSubmitBackgroundColor: #ea4c88;
+  --loginSubmitHoverBackgroundColor: #d44179;
+  --loginSubmitColor: #eee;
+  --bgDark: #2c3338;
+  --bgMedium: #3b4148;
+  --textLight: #eee;
+}
+
 /* Top Navigation Bar */
 .top-navbar {
   position: fixed;
@@ -49,7 +60,11 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Only apply active state to non-login pages */
+body:not(.team-page) .navbar-link.active {
+  color: var(--loginSubmitBackgroundColor);
+  background-color: rgba(234, 76, 136, 0.1);
+}
+
 body:not(.login-page) .navbar-link.active {
   color: var(--loginSubmitBackgroundColor);
   background-color: rgba(234, 76, 136, 0.1);
@@ -70,26 +85,30 @@ body.team-page {
     gap: 1rem;
     align-items: center;
   }
-  
+
   .navbar-brand {
-    font-size: 2rem; /* Keep consistent brand size */
+    font-size: 2rem;
+    /* Keep consistent brand size */
     flex: none;
     text-align: center;
   }
-  
+
   .navbar-links {
     gap: 1.5rem;
     justify-content: center;
   }
-  
+
   .navbar-link {
-    padding: 0.5rem 1rem; /* Keep consistent padding */
-    font-size: 0.9rem; /* Keep consistent font size */
+    padding: 0.5rem 1rem;
+    /* Keep consistent padding */
+    font-size: 0.9rem;
+    /* Keep consistent font size */
   }
-  
+
   body.login-page,
   body.register-page,
   body.team-page {
-    padding-top: 120px; /* Increase for stacked mobile layout */
+    padding-top: 120px;
+    /* Increase for stacked mobile layout */
   }
 }
