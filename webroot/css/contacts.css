@@ -672,7 +672,6 @@ h2.add-contact-heading {
   color: var(--baseColor);
   font-size: 1.3rem;
   font-weight: bold;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
   padding-bottom: 0.75rem;
   border-bottom: 2px solid var(--loginSubmitBackgroundColor);

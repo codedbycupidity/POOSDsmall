@@ -34,6 +34,7 @@
 }
 
 .navbar-brand {
+  text-decoration: none;
   font-size: 2rem;
   font-weight: bold;
   color: var(--loginSubmitBackgroundColor);

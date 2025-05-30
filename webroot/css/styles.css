@@ -22,31 +22,6 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Desktop Layout */
-.navbar-content {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar-brand {
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--loginSubmitBackgroundColor);
-  flex: 1;
-  text-align: left;
-}
-
-/* Only apply active state to non-login pages */
-body:not(.login-page) .navbar-link.active {
-  color: var(--loginSubmitBackgroundColor);
-  background-color: rgba(234, 76, 136, 0.1);
-}
-
 /* Adjust body padding to account for fixed navbar */
 body.login-page,
 body.register-page,
