@@ -1,13 +1,4 @@
-:root {
-  --baseColor: #606468;
-  --iconFill: var(--baseColor);
-  --loginSubmitBackgroundColor: #ea4c88;
-  --loginSubmitHoverBackgroundColor: #d44179;
-  --loginSubmitColor: #eee;
-  --bgDark: #2c3338;
-  --bgMedium: #3b4148;
-  --textLight: #eee;
-}
+@import url('variables.css');
 
 /* RESET + BASE LAYOUT */
 * {
@@ -145,10 +136,22 @@ body {
   color: var(--baseColor);
 }
 
+/* LOGOUT BUTTON - Combined styles instead of @extend */
 #logoutButton {
-  @extend .btn-primary, .btn-small;
-  margin-left: 8px;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
   font-size: 0.85rem;
+  transition: background-color 0.2s ease;
+  background-color: var(--loginSubmitBackgroundColor);
+  color: var(--loginSubmitColor);
+  padding: 4px 8px;
+  margin: 0 2px;
+  border-radius: 3px;
+  margin-left: 8px;
 }
 
 #logoutButton:hover {
@@ -211,12 +214,27 @@ body {
   margin-top: 0;
 }
 
+/* PANELS - Combined styles instead of @extend */
 .contacts-left-panel {
-  @extend .panel-base;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #555;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--bgMedium);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 .contacts-right-panel {
-  @extend .panel-base;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #555;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--bgMedium);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 #contactsDiv {
@@ -299,17 +317,44 @@ body {
   font-size: 0.9rem;
 }
 
-/* BUTTONS - Using base classes */
+/* BUTTONS - Combined styles instead of @extend */
 #addContactButton,
 #updateContactButton {
-  @extend .btn-base, .btn-primary;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease;
+  background-color: var(--loginSubmitBackgroundColor);
+  color: var(--loginSubmitColor);
   width: 100%;
   margin-bottom: 0.5rem;
 }
 
+#addContactButton:hover,
+#updateContactButton:hover {
+  background-color: var(--loginSubmitHoverBackgroundColor);
+}
+
 #cancelEditButton {
-  @extend .btn-base, .btn-secondary;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease;
+  background-color: var(--baseColor);
+  color: var(--textLight);
   width: 100%;
+}
+
+#cancelEditButton:hover {
+  background-color: #4e5560;
 }
 
 /* EDIT CONTACT OVERLAY */
@@ -438,9 +483,14 @@ body {
   transform: translateY(0);
 }
 
-/* ACTION BUTTONS */
+/* ACTION BUTTONS - Combined styles instead of @extend */
 .edit-btn {
-  @extend .btn-small;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  margin: 0 2px;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
   background-color: #f39c12;
   color: white;
 }
@@ -450,7 +500,12 @@ body {
 }
 
 .delete-btn {
-  @extend .btn-small;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  margin: 0 2px;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
   background-color: #e74c3c;
   color: white;
 }
@@ -524,7 +579,6 @@ h2.add-contact-heading {
     font-size: 0.8rem;
   }
 
-
   #contactsTable th:nth-child(4),
   #contactsTable td:nth-child(4),
   #contactsTable th:nth-child(5),
@@ -584,4 +638,3 @@ h2.add-contact-heading {
     max-height: 90vh;
   }
 }
-

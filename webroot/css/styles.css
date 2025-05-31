@@ -1,15 +1,5 @@
-:root {
-  --baseColor: #606468;
-  --iconFill: var(--baseColor);
-  --loginSubmitBackgroundColor: #ea4c88;
-  --loginSubmitHoverBackgroundColor: #d44179;
-  --loginSubmitColor: #eee;
-  --bgDark: #2c3338;
-  --bgMedium: #3b4148;
-  --textLight: #eee;
-}
+@import url('variables.css');
 
-/* RESET + BASE LAYOUT */
 * {
   box-sizing: border-box;
 }
@@ -34,7 +24,6 @@ body {
   flex-direction: column;
   gap: 1rem;
 }
-
 
 /* used across login and contact pages */
 /*  FORM SECTION */
