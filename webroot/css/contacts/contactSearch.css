@@ -1,3 +1,7 @@
+@import url('../variables.css');
+
+/* ======== SEARCH BAR STYLING ======== */
+
 /* RESPONSIVE SEARCH BAR - NO MARGIN OR BORDER */
 #searchDiv {
   display: flex;
@@ -6,6 +10,18 @@
   max-width: 600px;
   padding: 1rem;
   background-color: var(--bgDark); /* #2c3338 - same as contact details tab */
+  flex-shrink: 0;
+  border-bottom: 1px solid #555;
+}
+
+/* Alternative search div styling for contacts list */
+#searchDiv.contacts-search {
+  padding: 15px;
+  background-color: #444;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  max-width: none;
 }
 
 /* Search input and button container */
@@ -23,6 +39,14 @@
   border: none;
   background-color: var(--bgMedium); /* #3b4148 - lighter gray for input */
   color: var(--textLight);
+  font-size: 0.875rem;
+}
+
+/* Alternative styling for contacts search */
+#searchDiv.contacts-search #searchText {
+  padding: 8px 12px;
+  border: 1px solid #555;
+  min-width: auto;
 }
 
 #searchText::placeholder {
@@ -43,6 +67,14 @@
   font-weight: bold;
   cursor: pointer;
   white-space: nowrap;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  transition: background-color 0.2s ease;
+}
+
+/* Alternative styling for contacts search */
+#searchDiv.contacts-search #searchButton {
+  padding: 8px 16px;
 }
 
 #searchButton:hover {
@@ -68,7 +100,7 @@
   overflow: hidden; /* Prevent text overflow from breaking layout */
 }
 
-/* RESPONSIVE BREAKPOINTS */
+/* ======== RESPONSIVE BREAKPOINTS ======== */
 
 /* Medium screens */
 @media (max-width: 768px) {
@@ -77,9 +109,20 @@
     gap: 0.8rem;
   }
   
+  #searchDiv.contacts-search {
+    flex-direction: column;
+    gap: 8px;
+    padding: 15px;
+  }
+  
   #searchResult {
     font-size: 0.85rem;
     height: 2.7rem; /* Slightly larger for medium screens */
+  }
+
+  #searchDiv.contacts-search #searchText,
+  #searchDiv.contacts-search #searchButton {
+    width: 100%;
   }
 }
 
@@ -103,5 +146,9 @@
   #searchResult {
     font-size: 0.8rem;
     height: 2.5rem; /* Maintains fixed height on small screens */
+  }
+
+  #searchDiv.contacts-search {
+    padding: 10px;
   }
 }
