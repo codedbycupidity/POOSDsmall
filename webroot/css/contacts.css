@@ -73,46 +73,6 @@ body {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-/* SCROLLBAR STYLES - Applied once */
-.scrollable,
-#contactsDiv,
-#contactDetailsDiv,
-#editContactDiv {
-  scrollbar-width: thin;
-  scrollbar-color: var(--baseColor) var(--bgDark);
-}
-
-.scrollable::-webkit-scrollbar,
-#contactsDiv::-webkit-scrollbar,
-#contactDetailsDiv::-webkit-scrollbar,
-#editContactDiv::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.scrollable::-webkit-scrollbar-track,
-#contactsDiv::-webkit-scrollbar-track,
-#contactDetailsDiv::-webkit-scrollbar-track,
-#editContactDiv::-webkit-scrollbar-track {
-  background: var(--bgDark);
-  border-radius: 4px;
-}
-
-.scrollable::-webkit-scrollbar-thumb,
-#contactsDiv::-webkit-scrollbar-thumb,
-#contactDetailsDiv::-webkit-scrollbar-thumb,
-#editContactDiv::-webkit-scrollbar-thumb {
-  background: var(--baseColor);
-  border-radius: 4px;
-}
-
-.scrollable::-webkit-scrollbar-thumb:hover,
-#contactsDiv::-webkit-scrollbar-thumb:hover,
-#contactDetailsDiv::-webkit-scrollbar-thumb:hover,
-#editContactDiv::-webkit-scrollbar-thumb:hover {
-  background: var(--loginSubmitBackgroundColor);
-}
-
 /* HEADER */
 #headerDiv {
   display: flex;
@@ -136,11 +96,11 @@ body {
   color: var(--baseColor);
 }
 
-/* LOGOUT BUTTON - Combined styles instead of @extend */
+/* LOGOUT BUTTON - Combined styles */
 #logoutButton {
-  padding: 0.8rem;
+  padding: 4px 8px;
   border: none;
-  border-radius: 0.25rem;
+  border-radius: 3px;
   cursor: pointer;
   font-weight: bold;
   text-transform: uppercase;
@@ -148,9 +108,7 @@ body {
   transition: background-color 0.2s ease;
   background-color: var(--loginSubmitBackgroundColor);
   color: var(--loginSubmitColor);
-  padding: 4px 8px;
   margin: 0 2px;
-  border-radius: 3px;
   margin-left: 8px;
 }
 
@@ -214,7 +172,7 @@ body {
   margin-top: 0;
 }
 
-/* PANELS - Combined styles instead of @extend */
+/* PANELS - Combined styles */
 .contacts-left-panel {
   flex: 1;
   display: flex;
@@ -237,6 +195,49 @@ body {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
+/* SEARCH BAR STYLING */
+#searchDiv {
+  padding: 15px;
+  background-color: #444;
+  flex-shrink: 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-bottom: 1px solid #555;
+}
+
+#searchText {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: var(--bgMedium);
+  color: var(--textLight);
+  font-size: 0.875rem;
+}
+
+#searchText::placeholder {
+  color: var(--baseColor);
+}
+
+#searchButton {
+  padding: 8px 16px;
+  background-color: var(--loginSubmitBackgroundColor);
+  color: var(--loginSubmitColor);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  transition: background-color 0.2s ease;
+}
+
+#searchButton:hover {
+  background-color: var(--loginSubmitHoverBackgroundColor);
+}
+
+/* CONTACTS LIST */
 #contactsDiv {
   flex: 1;
   overflow-y: auto;
@@ -304,120 +305,6 @@ body {
   background-color: rgba(234, 76, 136, 0.15) !important;
 }
 
-/* CONTACT DETAILS PANEL */
-.details-header {
-  background-color: #444;
-  padding: 15px;
-  border-bottom: 1px solid #555;
-  font-weight: bold;
-  text-align: center;
-  flex-shrink: 0;
-  color: var(--textLight);
-  text-transform: uppercase;
-  font-size: 0.9rem;
-}
-
-/* BUTTONS - Combined styles instead of @extend */
-#addContactButton,
-#updateContactButton {
-  padding: 0.8rem;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  transition: background-color 0.2s ease;
-  background-color: var(--loginSubmitBackgroundColor);
-  color: var(--loginSubmitColor);
-  width: 100%;
-  margin-bottom: 0.5rem;
-}
-
-#addContactButton:hover,
-#updateContactButton:hover {
-  background-color: var(--loginSubmitHoverBackgroundColor);
-}
-
-#cancelEditButton {
-  padding: 0.8rem;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  transition: background-color 0.2s ease;
-  background-color: var(--baseColor);
-  color: var(--textLight);
-  width: 100%;
-}
-
-#cancelEditButton:hover {
-  background-color: #4e5560;
-}
-
-/* EDIT CONTACT OVERLAY */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 999;
-  display: none;
-}
-
-.overlay.active {
-  display: block;
-}
-
-#editContactDiv {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--bgMedium);
-  border: 2px solid #555;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  max-width: 500px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
-  border-left: 4px solid var(--loginSubmitBackgroundColor);
-}
-
-#editContactDiv h2 {
-  margin: 0 0 1rem 0;
-  color: var(--baseColor);
-  font-size: 1.1rem;
-  text-transform: uppercase;
-}
-
-/* MESSAGE STYLES */
-.result-message {
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
-  display: none;
-  color: var(--textLight);
-}
-
-.result-success {
-  background-color: rgba(46, 204, 113, 0.2);
-  border-left: 4px solid #2ecc71;
-}
-
-.result-error {
-  background-color: rgba(231, 76, 60, 0.2);
-  border-left: 4px solid #e74c3c;
-}
-
 /* DROPDOWN STYLES */
 .dropdown {
   position: relative;
@@ -483,7 +370,7 @@ body {
   transform: translateY(0);
 }
 
-/* ACTION BUTTONS - Combined styles instead of @extend */
+/* ACTION BUTTONS - Combined styles */
 .edit-btn {
   padding: 4px 8px;
   font-size: 0.75rem;
@@ -514,17 +401,30 @@ body {
   background-color: #c0392b;
 }
 
-/* HEADINGS */
-.add-contact-heading,
-h2.add-contact-heading {
-  margin: 0 0 1.5rem 0;
-  color: var(--baseColor);
-  font-size: 1.3rem;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--loginSubmitBackgroundColor);
-  position: relative;
+/* SCROLLBAR STYLES for contacts list */
+#contactsDiv::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+#contactsDiv::-webkit-scrollbar-track {
+  background: var(--bgDark);
+  border-radius: 4px;
+}
+
+#contactsDiv::-webkit-scrollbar-thumb {
+  background: var(--baseColor);
+  border-radius: 4px;
+}
+
+#contactsDiv::-webkit-scrollbar-thumb:hover {
+  background: var(--loginSubmitBackgroundColor);
+}
+
+/* Firefox scrollbars */
+#contactsDiv {
+  scrollbar-width: thin;
+  scrollbar-color: var(--baseColor) var(--bgDark);
 }
 
 /* RESPONSIVE DESIGN */
@@ -585,13 +485,6 @@ h2.add-contact-heading {
   #contactsTable td:nth-child(5) {
     display: none;
   }
-
-  .add-contact-heading,
-  h2.add-contact-heading {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -621,20 +514,5 @@ h2.add-contact-heading {
   .dropbtn {
     padding: 4px 6px;
     font-size: 0.7rem;
-  }
-
-  #contactDetailsDiv {
-    padding: 15px;
-  }
-
-  .details-header {
-    padding: 10px;
-    font-size: 0.8rem;
-  }
-
-  #editContactDiv {
-    width: 95%;
-    padding: 15px;
-    max-height: 90vh;
   }
 }
