@@ -1,0 +1,130 @@
+/* Login Page Specific Styles */
+
+/* CSS Variables (needed for login page) */
+:root {
+    --baseColor: #606468;
+    --iconFill: var(--baseColor);
+    --loginSubmitBackgroundColor: #ea4c88;
+    --loginSubmitHoverBackgroundColor: #d44179;
+    --loginSubmitColor: #eee;
+    --bgDark: #2c3338;
+    --bgMedium: #3b4148;
+    --textLight: #eee;
+}
+
+/* RESET + BASE LAYOUT for login page */
+* {
+    box-sizing: border-box;
+}
+
+body.login-page {
+    background: url('../assets/images/background.jpeg') no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* CONTAINER */
+body.login-page .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    padding: 0 2rem;
+}
+
+/* LOGIN FORM SECTION */
+body.login-page .login-form-section {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: min(70vw, 280px);
+    aspect-ratio: 3/ 4;
+    padding: clamp(0.5rem, 2vw, 1rem);
+    justify-content: center;
+    background-color: rgba(59, 65, 72, 0.9);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADINGS */
+body.login-page h2 {
+    margin: 0 0 1rem 0;
+    color: var(--baseColor);
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+body.login-page p {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--baseColor);
+    text-align: center;
+}
+
+body.login-page a:hover {
+    color: var(--loginSubmitHoverBackgroundColor);
+}
+
+/* FORM STYLING */
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Specific input field IDs */
+#loginName,
+#loginPassword {
+    width: 100%;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: var(--bgMedium);
+    color: var(--textLight);
+}
+
+/* LOGIN BUTTON */
+#loginButton {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background-color: var(--loginSubmitBackgroundColor);
+    color: var(--loginSubmitColor);
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background-color 0.3s ease;
+}
+
+#loginButton:hover {
+    background-color: var(--loginSubmitHoverBackgroundColor);
+}
+
+#loginButton:active {
+    transform: translateY(1px);
+}
+
+/* RESULT OUTPUT */
+#loginResult {
+    margin-bottom: 1rem;
+}
+
+.result-output {
+    background-color: var(--bgMedium);
+    color: var(--textLight);
+    padding: 1rem;
+    border-left: 4px solid var(--loginSubmitBackgroundColor);
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+}
+
+.result-output:empty {
+    display: none;
+}

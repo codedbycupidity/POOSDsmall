@@ -295,15 +295,6 @@ body {
   font-size: 0.9rem;
 }
 
-/* FORM STYLES */
-.form-group label {
-  display: block;
-  font-size: 0.9rem;
-  margin-bottom: 0.25rem;
-  color: var(--textLight);
-  font-weight: 500;
-}
-
 /* BUTTONS - Using base classes */
 #addContactButton,
 #updateContactButton {
@@ -353,7 +344,7 @@ body {
 
 #editContactDiv h2 {
   margin: 0 0 1rem 0;
-  color: var(--textLight);
+  color: var(--baseColor);
   font-size: 1.1rem;
   text-transform: uppercase;
 }
@@ -552,9 +543,6 @@ h2.add-contact-heading {
     font-size: 0.8rem;
   }
 
-  .form-section {
-    padding: 1rem;
-  }
 
   #contactsTable th:nth-child(4),
   #contactsTable td:nth-child(4),
@@ -615,3 +603,4 @@ h2.add-contact-heading {
     max-height: 90vh;
   }
 }
+
