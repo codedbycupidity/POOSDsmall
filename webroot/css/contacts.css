@@ -34,6 +34,94 @@ body {
   gap: 1rem;
 }
 
+/* BASE COMPONENT CLASSES */
+.btn-base {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--loginSubmitBackgroundColor);
+  color: var(--loginSubmitColor);
+}
+
+.btn-primary:hover {
+  background-color: var(--loginSubmitHoverBackgroundColor);
+}
+
+.btn-secondary {
+  background-color: var(--baseColor);
+  color: var(--textLight);
+}
+
+.btn-secondary:hover {
+  background-color: #4e5560;
+}
+
+.btn-small {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  margin: 0 2px;
+  border-radius: 3px;
+}
+
+.panel-base {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #555;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--bgMedium);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* SCROLLBAR STYLES - Applied once */
+.scrollable,
+#contactsDiv,
+#contactDetailsDiv,
+#editContactDiv {
+  scrollbar-width: thin;
+  scrollbar-color: var(--baseColor) var(--bgDark);
+}
+
+.scrollable::-webkit-scrollbar,
+#contactsDiv::-webkit-scrollbar,
+#contactDetailsDiv::-webkit-scrollbar,
+#editContactDiv::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollable::-webkit-scrollbar-track,
+#contactsDiv::-webkit-scrollbar-track,
+#contactDetailsDiv::-webkit-scrollbar-track,
+#editContactDiv::-webkit-scrollbar-track {
+  background: var(--bgDark);
+  border-radius: 4px;
+}
+
+.scrollable::-webkit-scrollbar-thumb,
+#contactsDiv::-webkit-scrollbar-thumb,
+#contactDetailsDiv::-webkit-scrollbar-thumb,
+#editContactDiv::-webkit-scrollbar-thumb {
+  background: var(--baseColor);
+  border-radius: 4px;
+}
+
+.scrollable::-webkit-scrollbar-thumb:hover,
+#contactsDiv::-webkit-scrollbar-thumb:hover,
+#contactDetailsDiv::-webkit-scrollbar-thumb:hover,
+#editContactDiv::-webkit-scrollbar-thumb:hover {
+  background: var(--loginSubmitBackgroundColor);
+}
+
 /* HEADER */
 #headerDiv {
   display: flex;
@@ -58,18 +146,9 @@ body {
 }
 
 #logoutButton {
+  @extend .btn-primary, .btn-small;
   margin-left: 8px;
-  padding: 4px 10px;
   font-size: 0.85rem;
-  background-color: var(--loginSubmitBackgroundColor);
-  color: var(--loginSubmitColor);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-#logoutButton:hover {
-  background-color: var(--loginSubmitHoverBackgroundColor);
 }
 
 /* TAB STYLES */
@@ -120,43 +199,22 @@ body {
   display: block;
 }
 
-/* ======== SIDE-BY-SIDE LAYOUT ======== */
-
-/* Main container for the side-by-side layout */
+/* SIDE-BY-SIDE LAYOUT */
 .contacts-container {
   display: flex;
   gap: 20px;
   height: calc(100vh - 280px);
-  /* Adjusted for your header and tab heights */
   margin-top: 0;
 }
 
-/* Left panel - Contact list */
 .contacts-left-panel {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #555;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: var(--bgMedium);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  @extend .panel-base;
 }
 
-/* Right panel - Contact details */
 .contacts-right-panel {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #555;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: var(--bgMedium);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-
+  @extend .panel-base;
 }
 
-/* Contacts table container - Updated for side-by-side */
 #contactsDiv {
   flex: 1;
   overflow-y: auto;
@@ -164,7 +222,7 @@ body {
   background-color: var(--bgDark);
 }
 
-/* TABLE STRUCTURE - Updated for side-by-side */
+/* TABLE STRUCTURE */
 #contactsTable {
   width: 100%;
   border-collapse: separate;
@@ -209,26 +267,22 @@ body {
 
 #contactsTable tr:hover td {
   background-color: var(--bgMedium);
+  position: relative;
+  z-index: auto;
 }
 
-/* CLICKABLE ROW STYLES */
+/* CONTACT ROW STYLES */
 .contact-row {
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
-/* Persistent highlight for currently selected contact */
-.contact-row.selected {
-  background-color: rgba(234, 76, 136, 0.15) !important;
-}
-
+.contact-row.selected,
 .contact-row.selected td {
   background-color: rgba(234, 76, 136, 0.15) !important;
 }
 
-/* ======== CONTACT DETAILS PANEL ======== */
-
-/* Details panel header */
+/* CONTACT DETAILS PANEL */
 .details-header {
   background-color: #444;
   padding: 15px;
@@ -282,45 +336,20 @@ body {
   color: var(--baseColor);
 }
 
-/* BUTTONS */
+/* BUTTONS - Using base classes */
 #addContactButton,
 #updateContactButton {
+  @extend .btn-base, .btn-primary;
   width: 100%;
-  padding: 0.8rem;
-  background-color: var(--loginSubmitBackgroundColor);
-  color: var(--loginSubmitColor);
-  font-weight: bold;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  font-size: 0.875rem;
   margin-bottom: 0.5rem;
 }
 
-#addContactButton:hover,
-#updateContactButton:hover {
-  background-color: var(--loginSubmitHoverBackgroundColor);
-}
-
 #cancelEditButton {
+  @extend .btn-base, .btn-secondary;
   width: 100%;
-  padding: 0.8rem;
-  background-color: var(--baseColor);
-  color: var(--textLight);
-  font-weight: bold;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  font-size: 0.875rem;
 }
 
-#cancelEditButton:hover {
-  background-color: #4e5560;
-}
-
-/* EDIT CONTACT SECTION - Updated for overlay */
+/* EDIT CONTACT OVERLAY */
 .overlay {
   position: fixed;
   top: 0;
@@ -368,17 +397,16 @@ body {
   border-radius: 0.25rem;
   font-size: 0.875rem;
   display: none;
+  color: var(--textLight);
 }
 
 .result-success {
   background-color: rgba(46, 204, 113, 0.2);
-  color: var(--textLight);
   border-left: 4px solid #2ecc71;
 }
 
 .result-error {
   background-color: rgba(231, 76, 60, 0.2);
-  color: var(--textLight);
   border-left: 4px solid #e74c3c;
 }
 
@@ -470,19 +498,9 @@ body {
   transform: translateY(0);
 }
 
-/* ACTION BUTTONS (Alternative to dropdown if needed) */
-.edit-btn,
-.delete-btn {
-  padding: 4px 8px;
-  margin: 0 2px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-}
-
+/* ACTION BUTTONS */
 .edit-btn {
+  @extend .btn-small;
   background-color: #f39c12;
   color: white;
 }
@@ -492,6 +510,7 @@ body {
 }
 
 .delete-btn {
+  @extend .btn-small;
   background-color: #e74c3c;
   color: white;
 }
@@ -500,7 +519,20 @@ body {
   background-color: #c0392b;
 }
 
-/* ======== RESPONSIVE DESIGN ======== */
+/* HEADINGS */
+.add-contact-heading,
+h2.add-contact-heading {
+  margin: 0 0 1.5rem 0;
+  color: var(--baseColor);
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--loginSubmitBackgroundColor);
+  position: relative;
+}
+
+/* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
@@ -520,7 +552,6 @@ body {
     padding: 0.75rem;
   }
 
-  /* Stack side-by-side layout vertically on mobile */
   .contacts-container {
     flex-direction: column;
     height: auto;
@@ -557,12 +588,18 @@ body {
     padding: 1rem;
   }
 
-  /* Hide some table columns on mobile */
   #contactsTable th:nth-child(4),
   #contactsTable td:nth-child(4),
   #contactsTable th:nth-child(5),
   #contactsTable td:nth-child(5) {
     display: none;
+  }
+
+  .add-contact-heading,
+  h2.add-contact-heading {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
   }
 }
 
@@ -608,84 +645,5 @@ body {
     width: 95%;
     padding: 15px;
     max-height: 90vh;
-  }
-}
-
-/* Fix for table cell overflow */
-#contactsTable td,
-#contactsTable th {
-  overflow: visible !important;
-}
-
-/* Prevent row highlighting from covering dropdown */
-#contactsTable tr:hover td {
-  position: relative;
-  z-index: auto;
-}
-
-/* ======== CUSTOM SCROLLBARS ======== */
-/* Webkit browsers (Chrome, Safari, Edge) */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bgDark);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--baseColor);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--loginSubmitBackgroundColor);
-}
-
-#contactsDiv::-webkit-scrollbar,
-#contactDetailsDiv::-webkit-scrollbar {
-  width: 8px;
-}
-
-#contactsDiv::-webkit-scrollbar-track,
-#contactDetailsDiv::-webkit-scrollbar-track {
-  background: var(--bgDark);
-  border-radius: 4px;
-}
-
-#contactsDiv::-webkit-scrollbar-thumb,
-#contactDetailsDiv::-webkit-scrollbar-thumb {
-  background: var(--baseColor);
-  border-radius: 4px;
-}
-
-#contactsDiv::-webkit-scrollbar-thumb:hover,
-#contactDetailsDiv::-webkit-scrollbar-thumb:hover {
-  background: var(--loginSubmitBackgroundColor);
-}
-
-/* Add New Contact Heading Styles */
-.add-contact-heading,
-h2.add-contact-heading {
-  margin: 0 0 1.5rem 0;
-  color: var(--baseColor);
-  font-size: 1.3rem;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--loginSubmitBackgroundColor);
-  position: relative;
-}
-
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-
-  .add-contact-heading,
-  .add-contact-heading-simple,
-  h2.add-contact-heading {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
   }
 }

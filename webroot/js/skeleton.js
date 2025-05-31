@@ -13,7 +13,7 @@ function getRandomWidth() {
 }
 
 function showSkeleton(rowCount = 6) {
-    console.log('showSkeleton called with rowCount:', rowCount);
+    // console.log('showSkeleton called with rowCount:', rowCount);
     
     const contactsList = document.getElementById('contactsList');
     const searchResult = document.getElementById('searchResult');
@@ -41,11 +41,11 @@ function showSkeleton(rowCount = 6) {
     // Set only skeleton rows in the table
     contactsList.innerHTML = skeletonRows;
     
-    console.log('Skeleton HTML set successfully');
+    // console.log('Skeleton HTML set successfully');
 }
 
 function hideSkeleton() {
-    console.log('hideSkeleton called');
+    // console.log('hideSkeleton called');
     
     const contactsList = document.getElementById('contactsList');
     if (contactsList) {

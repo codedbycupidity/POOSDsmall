@@ -223,11 +223,7 @@ export function updateContact() {
 }
 
 // --- Delete Contact ---
-export function deleteContact(id) {
-  const row = event.target.closest('tr');
-  const firstName = row.cells[1].textContent;
-  const lastName = row.cells[2].textContent;
-
+export function deleteContact(id, firstName, lastName) {
   if (!confirm(`Are you sure you want to delete ${firstName} ${lastName}?`)) return;
 
   const tmp = { ID: id, userID: userId };
@@ -250,10 +246,6 @@ export function deleteContact(id) {
 }
 
 // ======== CONTACT DETAILS POPULATION ========
-/**
- * Populates the contact details panel with selected contact information
- * @param {Object} contact - Contact object with ID, firstName, lastName, email, phoneNumber, address
- */
 function populateContactDetails(contact) {
   const detailsTable = document.getElementById('contactDetails');
   const detailsBody = detailsTable.querySelector('tbody');
@@ -417,11 +409,6 @@ function escapeHtml(str) {
 }
 
 // ======== CONTACTS TABLE POPULATION ========
-/**
- * Populates the contacts table with contact data and makes rows clickable
- * @param {Array} contacts - Array of contact objects from the database
- * @param {string} searchInput - Optional search term used to filter contacts
- */
 function populateContactsTable(contacts, searchInput = "") {
   // Get the table body element where contacts will be displayed
   const listContainer = document.getElementById("contactsList");
@@ -474,7 +461,7 @@ function populateContactsTable(contacts, searchInput = "") {
       }
 
       // Log the selected contact to console
-      console.log(`${contact.firstName} ${contact.lastName} is selected`);
+      // console.log(`${contact.firstName} ${contact.lastName} is selected`);
 
       // Remove selection from all other rows
       document.querySelectorAll('.contact-row.selected').forEach(selectedRow => {
@@ -498,14 +485,6 @@ function populateContactsTable(contacts, searchInput = "") {
     listContainer.appendChild(row);
   });
 }
-
-// Add this function to handle contact selection
-function selectContact(firstName, lastName) {
-  console.log(`${firstName} ${lastName} is selected`);
-}
-
-// Don't forget to export this function and add it to window in the DOM event section
-window.selectContact = selectContact;
 
 // ======== TEST MODE ========
 
