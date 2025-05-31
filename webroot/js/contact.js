@@ -64,8 +64,6 @@ export function addContact() {
     isValid = false;
   }
 
-  // Address is optional, but you can add validation if you want
-
   if (!isValid) {
     showToast("Error: Please fix the highlighted fields");
     return;
@@ -97,7 +95,6 @@ export function addContact() {
   xhr.send(jsonPayload);
 }
 
-// --- Search Contacts ---
 // --- Search Contacts ---
 export function searchContacts() {
   const searchInputElement = document.getElementById("searchText");

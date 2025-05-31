@@ -296,44 +296,12 @@ body {
 }
 
 /* FORM STYLES */
-.form-section {
-  background-color: var(--bgMedium);
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  max-width: 500px;
-}
-
-.form-group {
-  margin-bottom: 1rem;
-}
-
 .form-group label {
   display: block;
   font-size: 0.9rem;
   margin-bottom: 0.25rem;
   color: var(--textLight);
   font-weight: 500;
-}
-
-.form-group input {
-  outline: 2px solid var(--baseColor);
-  width: 100%;
-  padding: 0.6rem;
-  border: none;
-  border-radius: 0.25rem;
-  background-color: var(--bgDark);
-  color: var(--textLight);
-  font-size: 0.875rem;
-}
-
-.form-group input:focus {
-  outline: 2px solid var(--loginSubmitBackgroundColor);
-  outline-offset: -2px;
-}
-
-.form-group input::placeholder {
-  color: var(--baseColor);
 }
 
 /* BUTTONS - Using base classes */

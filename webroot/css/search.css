@@ -56,10 +56,16 @@
   font-size: 0.8rem;
   text-align: center;
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.75rem 0.5rem; /* Increased vertical padding for more stable height */
   background-color: var(--bgMedium); /* #3b4148 - same as input */
   border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 2.5rem; /* Fixed height instead of min-height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent text overflow from breaking layout */
 }
 
 /* RESPONSIVE BREAKPOINTS */
@@ -73,6 +79,7 @@
   
   #searchResult {
     font-size: 0.85rem;
+    height: 2.7rem; /* Slightly larger for medium screens */
   }
 }
 
@@ -95,5 +102,6 @@
   
   #searchResult {
     font-size: 0.8rem;
+    height: 2.5rem; /* Maintains fixed height on small screens */
   }
 }
