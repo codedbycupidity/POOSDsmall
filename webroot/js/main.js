@@ -4,7 +4,6 @@ window.doLogout = doLogout;
 
 import { readCookie } from './cookies.js';
 import { urlBase, extension, userId, firstName, lastName, setUserData } from './config.js';
-import { showToast } from './toast.js';
 
 // Import contacts logic
 import {
