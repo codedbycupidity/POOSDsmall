@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../css/navbar.css">
   <link rel="stylesheet" href="../css/teams.css">
   <link rel="stylesheet" href="../css/styles.css">
+  <script type="module" src="js/navbar.js"></script>
+
 </head>
 
 <body class="team-page">
@@ -17,8 +19,23 @@
     <div class="navbar-content">
       <a href="/" class="navbar-brand">Contact Manager</a>
       <div class="navbar-links">
-        <a href="/" class="navbar-link">Login</a>
-        <a href="meet-team.html" class="navbar-link active">Meet the Team</a>
+        <!-- Menu Dropdown -->
+        <div class="navbar-dropdown">
+          <button class="navbar-dropdown-toggle">
+            <div class="hamburger-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+          <div class="navbar-dropdown-menu">
+            <div class="dropdown-menu-content">
+              <a href="index.html" class="dropdown-menu-item">Login</a>
+              <a href="meet-team.html" class="dropdown-menu-item active">Meet the Team</a>
+              <a href="register.html" class="dropdown-menu-item">Register</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
