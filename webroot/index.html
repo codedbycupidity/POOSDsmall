@@ -7,6 +7,7 @@
   <title>Login - Contact Manager</title>
   <link rel="stylesheet" href="../css/fonts.css" />
   <link rel="stylesheet" href="../css/navbar.css" />
+  <link rel="stylesheet" href="../css/scroll.css" />
   <link rel="stylesheet" href="../css/login.css" />
   <link rel="stylesheet" href="../css/styles.css" />
   <script type="module" src="js/navbar.js"></script>
@@ -14,11 +15,10 @@
 </head>
 
 <body class="login-page">
-
   <!-- Top Navigation Bar -->
   <nav class="top-navbar">
     <div class="navbar-content">
-      <a href="/" class="navbar-brand">Contact Manager</a>
+      <a href="/" class="navbar-brand">Rolodex<span style="color: #eee;">it</span></a>
       <div class="navbar-links">
         <!-- Menu Dropdown -->
         <div class="navbar-dropdown">
@@ -60,9 +60,9 @@
         <button type="button" id="loginButton" onclick="doLogin()">Login</button>
       </form>
 
-      <p style="margin-top: 1rem; font-size: 0.875rem;">
+      <p class="register-message" style="margin-top: 1rem; font-size: 0.875rem;">
         Don't have an account?
-        <a href="register.html" style="color: var(--loginSubmitBackgroundColor); text-decoration: underline;">Register
+        <a href="register.html" style="color: white; text-decoration: underline;">Register
           here</a>
       </p>
     </section>
