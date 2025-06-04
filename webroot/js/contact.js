@@ -3,6 +3,7 @@
 import { readCookie } from './cookies.js';
 import { urlBase, extension, userId } from './config.js';
 import { showToast } from './toast.js';
+import { ContactTemplate } from './contactTemplate.js';
 
 // Export TEST_MODE so main.js can toggle it if needed
 export const TEST_MODE = false; // Set to false for production
@@ -256,68 +257,8 @@ function populateContactDetails(contact) {
   // Clear existing details
   detailsBody.innerHTML = '';
 
-  // Populate with contact details using escapeHtml pattern
-  detailsBody.innerHTML = `
-    <tr>
-      <td><strong>First Name:</strong></td>
-      <td>${escapeHtml(contact.firstName)}</td>
-    </tr>
-    <tr>
-      <td><strong>Last Name:</strong></td>
-      <td>${escapeHtml(contact.lastName)}</td>
-    </tr>
-    <tr>
-    <td><strong>Email:</strong></td>
-    <td><a href="mailto:${escapeHtml(contact.email)}" 
-    style="color: var(--loginSubmitBackgroundColor); 
-    text-decoration: none; 
-    transition: color 0.2s ease;
-    " onmouseover="this.style.color='var(--loginSubmitHoverBackgroundColor)'; 
-    this.style.textDecoration='underline';
-    " onmouseout="this.style.color='var(--loginSubmitBackgroundColor)'; 
-    this.style.textDecoration='none';">${escapeHtml(contact.email)}</a></td>
-  </tr>
-  <tr>
-    <td><strong>Phone:</strong></td>
-    <td><a href="tel:${escapeHtml(contact.phoneNumber)}" 
-    style="color: var(--loginSubmitBackgroundColor); 
-    text-decoration: none; 
-    transition: color 0.2s ease;
-    " onmouseover="this.style.color='var(--loginSubmitHoverBackgroundColor)'; 
-    this.style.textDecoration='underline';
-    " onmouseout="this.style.color='var(--loginSubmitBackgroundColor)'; 
-    this.style.textDecoration='none';">${escapeHtml(contact.phoneNumber)}</a></td>
-  </tr>
-    <tr>
-    <td colspan="2" style="padding-top: 20px; text-align: center;">
-      <div style="display: flex; 
-      flex-wrap: wrap; 
-      justify-content: center; 
-      gap: 10px;">
-      </div>
-      <button onclick="showEditContact(${contact.ID}, '${escapeHtml(contact.firstName)}', '${escapeHtml(contact.lastName)}', '${escapeHtml(contact.email)}', '${escapeHtml(contact.phoneNumber)}')}'); return false;" 
-              style="padding: 8px 16px; 
-              background-color: var(--loginSubmitBackgroundColor); 
-              color: white; 
-              border: none; 
-              border-radius: 4px; 
-              cursor: pointer; 
-              min-width: 120px;">
-        Edit Contact
-      </button>
-      <button onclick="deleteContact(${contact.ID}); return false;" 
-              style="padding: 8px 16px; 
-              background-color:rgba(220, 53, 70, 0.65);
-              color: white; 
-              border: none; 
-              border-radius: 4px; 
-              cursor: pointer; 
-              min-width: 120px;">
-        Delete Contact
-      </button>
-      </td>
-    </tr>
-  `;
+  // Use the template from the separate file
+  detailsBody.innerHTML = ContactTemplate.details(contact);
 }
 /**
  * Clears the contact details panel and shows the "no contact selected" message
@@ -484,7 +425,7 @@ function handleTestModeSearch(searchInput) {
     { ID: 1, firstName: "John", lastName: "Smith", email: "john.smith@email.com", phoneNumber: "(555) 123-4567" },
     { ID: 2, firstName: "Jane", lastName: "Doe", email: "jane.doe@email.com", phoneNumber: "(555) 987-6543" },
     { ID: 3, firstName: "Michael", lastName: "Johnson", email: "m.johnson@email.com", phoneNumber: "(555) 456-7890" },
-    { ID: 4, firstName: "Sarah", lastName: "Williams", email: "sarah.w@email.com", phoneNumber: "(555) 321-0987"},
+    { ID: 4, firstName: "Sarah", lastName: "Williams", email: "sarah.w@email.com", phoneNumber: "(555) 321-0987" },
     { ID: 5, firstName: "David", lastName: "Brown", email: "david.brown@email.com", phoneNumber: "(555) 654-3210" },
     { ID: 6, firstName: "Emily", lastName: "Davis", email: "emily.davis@email.com", phoneNumber: "(555) 789-0123" }
   ];
