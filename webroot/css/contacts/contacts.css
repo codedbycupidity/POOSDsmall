@@ -170,6 +170,8 @@ body {
   gap: 20px;
   height: calc(100vh - 280px);
   margin-top: 0;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 /* PANELS - Combined styles */
