@@ -50,8 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Validation clearing for all relevant fields, now including address fields
   const fields = [
-    'contactFirstName', 'contactLastName', 'contactEmail', 'contactPhone', 'contactAddress',
-    'editFirstName', 'editLastName', 'editEmail', 'editPhone', 'editAddress'
+    'contactFirstName', 'contactLastName', 'contactEmail', 'contactPhone',
+    'editFirstName', 'editLastName', 'editEmail', 'editPhone'
   ];
   fields.forEach(fieldId => {
     const field = document.getElementById(fieldId);

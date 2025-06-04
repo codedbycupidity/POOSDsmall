@@ -16,7 +16,6 @@ export function addContact() {
   const lastName = document.getElementById("contactLastName").value.trim();
   const email = document.getElementById("contactEmail").value.trim();
   const phoneNumber = document.getElementById("contactPhone").value.trim();
-  const address = document.getElementById("contactAddress").value.trim();
 
   clearValidationErrors();
 
@@ -69,7 +68,7 @@ export function addContact() {
     return;
   }
 
-  const tmp = { firstName, lastName, email, phoneNumber, address, userID: userId };
+  const tmp = { firstName, lastName, email, phoneNumber, userID: userId };
   const jsonPayload = JSON.stringify(tmp);
   const url = `${urlBase}/addContact.${extension}`;
 
@@ -162,13 +161,12 @@ export function searchContacts() {
 }
 
 // --- Edit Contact Modal/Inline ---
-export function showEditContact(id, firstName, lastName, email, phone, address = "") {
+export function showEditContact(id, firstName, lastName, email, phone = "") {
   document.getElementById("editContactID").value = id;
   document.getElementById("editFirstName").value = firstName;
   document.getElementById("editLastName").value = lastName;
   document.getElementById("editEmail").value = email;
   document.getElementById("editPhone").value = phone;
-  document.getElementById("editAddress").value = address || "";
 
   document.getElementById("editContactDiv").style.display = "block";
   document.getElementById("editContactDiv").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -187,14 +185,13 @@ export function updateContact() {
   const lastName = document.getElementById("editLastName").value.trim();
   const email = document.getElementById("editEmail").value.trim();
   const phone = document.getElementById("editPhone").value.trim();
-  const address = document.getElementById("editAddress").value.trim();
 
   if (!firstName || !lastName || !email || !phone) {
     document.getElementById("editContactResult").innerHTML = "Please fill in all fields.";
     return;
   }
 
-  const tmp = { ID: contactId, firstName, lastName, email, phoneNumber: phone, address, userID: userId };
+  const tmp = { ID: contactId, firstName, lastName, email, phoneNumber: phone, userID: userId };
   const jsonPayload = JSON.stringify(tmp);
   const url = `${urlBase}/updateContact.${extension}`;
 
@@ -292,17 +289,13 @@ function populateContactDetails(contact) {
     this.style.textDecoration='none';">${escapeHtml(contact.phoneNumber)}</a></td>
   </tr>
     <tr>
-      <td><strong>Address:</strong></td>
-      <td>${escapeHtml(contact.address || 'Not provided')}</td>
-    </tr>
-    <tr>
     <td colspan="2" style="padding-top: 20px; text-align: center;">
       <div style="display: flex; 
       flex-wrap: wrap; 
       justify-content: center; 
       gap: 10px;">
       </div>
-      <button onclick="showEditContact(${contact.ID}, '${escapeHtml(contact.firstName)}', '${escapeHtml(contact.lastName)}', '${escapeHtml(contact.email)}', '${escapeHtml(contact.phoneNumber)}', '${escapeHtml(contact.address || "")}'); return false;" 
+      <button onclick="showEditContact(${contact.ID}, '${escapeHtml(contact.firstName)}', '${escapeHtml(contact.lastName)}', '${escapeHtml(contact.email)}', '${escapeHtml(contact.phoneNumber)}')}'); return false;" 
               style="padding: 8px 16px; 
               background-color: var(--loginSubmitBackgroundColor); 
               color: white; 
@@ -363,8 +356,8 @@ function showFieldError(fieldId, message) {
 }
 
 function clearValidationErrors() {
-  const fields = ['contactFirstName', 'contactLastName', 'contactEmail', 'contactPhone', 'contactAddress'];
-  fields.concat(['editFirstName', 'editLastName', 'editEmail', 'editPhone', 'editAddress']).forEach(fieldId => {
+  const fields = ['contactFirstName', 'contactLastName', 'contactEmail', 'contactPhone'];
+  fields.concat(['editFirstName', 'editLastName', 'editEmail', 'editPhone']).forEach(fieldId => {
     const field = document.getElementById(fieldId);
     if (field) {
       field.style.borderColor = '';
@@ -380,7 +373,6 @@ function clearAddContactForm() {
   document.getElementById("contactLastName").value = "";
   document.getElementById("contactEmail").value = "";
   document.getElementById("contactPhone").value = "";
-  document.getElementById("contactAddress").value = "";
   clearValidationErrors();
 }
 
@@ -489,12 +481,12 @@ function handleTestModeSearch(searchInput) {
   if (typeof hideSkeleton === 'function') hideSkeleton();
 
   const mockContacts = [
-    { ID: 1, firstName: "John", lastName: "Smith", email: "john.smith@email.com", phoneNumber: "(555) 123-4567", address: "123 Main St" },
-    { ID: 2, firstName: "Jane", lastName: "Doe", email: "jane.doe@email.com", phoneNumber: "(555) 987-6543", address: "456 Oak Ave" },
-    { ID: 3, firstName: "Michael", lastName: "Johnson", email: "m.johnson@email.com", phoneNumber: "(555) 456-7890", address: "" },
-    { ID: 4, firstName: "Sarah", lastName: "Williams", email: "sarah.w@email.com", phoneNumber: "(555) 321-0987", address: "789 Pine Dr" },
-    { ID: 5, firstName: "David", lastName: "Brown", email: "david.brown@email.com", phoneNumber: "(555) 654-3210", address: "" },
-    { ID: 6, firstName: "Emily", lastName: "Davis", email: "emily.davis@email.com", phoneNumber: "(555) 789-0123", address: "222 Maple Ct" }
+    { ID: 1, firstName: "John", lastName: "Smith", email: "john.smith@email.com", phoneNumber: "(555) 123-4567" },
+    { ID: 2, firstName: "Jane", lastName: "Doe", email: "jane.doe@email.com", phoneNumber: "(555) 987-6543" },
+    { ID: 3, firstName: "Michael", lastName: "Johnson", email: "m.johnson@email.com", phoneNumber: "(555) 456-7890" },
+    { ID: 4, firstName: "Sarah", lastName: "Williams", email: "sarah.w@email.com", phoneNumber: "(555) 321-0987"},
+    { ID: 5, firstName: "David", lastName: "Brown", email: "david.brown@email.com", phoneNumber: "(555) 654-3210" },
+    { ID: 6, firstName: "Emily", lastName: "Davis", email: "emily.davis@email.com", phoneNumber: "(555) 789-0123" }
   ];
 
   let filteredContacts = mockContacts;
@@ -503,8 +495,7 @@ function handleTestModeSearch(searchInput) {
       contact.firstName.toLowerCase().includes(searchInput.toLowerCase()) ||
       contact.lastName.toLowerCase().includes(searchInput.toLowerCase()) ||
       contact.email.toLowerCase().includes(searchInput.toLowerCase()) ||
-      contact.phoneNumber.includes(searchInput) ||
-      (contact.address && contact.address.toLowerCase().includes(searchInput.toLowerCase()))
+      contact.phoneNumber.includes(searchInput)
     );
   }
 
@@ -525,8 +516,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (searchButton) searchButton.addEventListener('click', () => searchContacts());
 
   // Add input clear listeners to all fields
-  const fields = ['contactFirstName', 'contactLastName', 'contactEmail', 'contactPhone', 'contactAddress',
-    'editFirstName', 'editLastName', 'editEmail', 'editPhone', 'editAddress'];
+  const fields = ['contactFirstName', 'contactLastName', 'contactEmail', 'contactPhone',
+    'editFirstName', 'editLastName', 'editEmail', 'editPhone'];
   fields.forEach(fieldId => {
     const field = document.getElementById(fieldId);
     if (field) {
