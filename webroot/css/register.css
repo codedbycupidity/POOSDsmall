@@ -1,25 +1,16 @@
 :root {
-  /* Colors */
-  --baseColor: #606468;
-  --iconFill: var(--baseColor);
-  --loginSubmitBackgroundColor: #ea4c88;
-  --loginSubmitHoverBackgroundColor: #d44179;
-  --loginSubmitColor: #eee;
-  --bgDark: #2c3338;
-  --bgMedium: #3b4148;
-  --textLight: #eee;
   --bgOverlay: rgba(44, 51, 56, 0.75);
   --cardBg: rgba(59, 65, 72, 0.9);
   --successBg: rgba(46, 204, 113, 0.2);
   --successBorder: #2ecc71;
-  
+
   /* Spacing */
   --spacing-xs: 0.5rem;
   --spacing-sm: 0.8rem;
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
-  
+
   /* Animation */
   --transition-speed: 0.3s;
 }
@@ -63,7 +54,7 @@ body::before {
   max-width: 500px;
   width: 90%;
   margin: var(--spacing-xl);
-  background-color: rgba(59, 65, 72, 0.9); 
+  background-color: rgba(59, 65, 72, 0.9);
   border-radius: 8px;
   padding: var(--spacing-xl);
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
@@ -73,18 +64,19 @@ body::before {
 
 
 @keyframes fadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(-20px); 
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .mui-card h2 {
-  color: var(--baseColor);
+  color: var(--loginSubmitBackgroundColor);
   margin-top: 0;
   margin-bottom: var(--spacing-lg);
   text-align: center;
@@ -93,7 +85,7 @@ body::before {
 
 .mui-form label {
   display: block;
-   color: var(--baseColor);
+  color: white;
   margin-bottom: var(--spacing-xs);
   font-size: 0.9rem;
 }
@@ -169,7 +161,8 @@ body::before {
   background-color: var(--successBg);
   border-left: 4px solid var(--successBorder);
   color: var(--textLight);
-  display: none; /* Hide by default */
+  display: none;
+  /* Hide by default */
 }
 
 #registerResult.error {
@@ -178,7 +171,8 @@ body::before {
 }
 
 #registerResult:not(:empty) {
-  display: block; /* Show only when it has content */
+  display: block;
+  /* Show only when it has content */
 }
 
 /* Responsive adjustments */
@@ -188,7 +182,7 @@ body::before {
     padding: var(--spacing-md);
     margin: var(--spacing-md);
   }
-  
+
   .mui-card h2 {
     font-size: 1.5rem;
   }

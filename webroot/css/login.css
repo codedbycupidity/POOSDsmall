@@ -1,16 +1,6 @@
 /* Login Page Specific Styles */
+@import url('variables.css');
 
-/* CSS Variables (needed for login page) */
-:root {
-    --baseColor: #606468;
-    --iconFill: var(--baseColor);
-    --loginSubmitBackgroundColor: #ea4c88;
-    --loginSubmitHoverBackgroundColor: #d44179;
-    --loginSubmitColor: #eee;
-    --bgDark: #2c3338;
-    --bgMedium: #3b4148;
-    --textLight: #eee;
-}
 
 /* RESET + BASE LAYOUT for login page */
 * {
